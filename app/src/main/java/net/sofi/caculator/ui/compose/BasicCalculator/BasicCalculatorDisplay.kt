@@ -1,4 +1,4 @@
-package net.sofi.caculator.ui.compose
+package net.sofi.caculator.ui.compose.BasicCalculator
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

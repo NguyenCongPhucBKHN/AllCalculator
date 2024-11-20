@@ -8,8 +8,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import net.sofi.caculator.ui.compose.BasicCalculatorButtons
-import net.sofi.caculator.ui.compose.BasicCalculatorDisplay
+import net.sofi.caculator.ui.compose.BasicCalculator.BasicCalculatorButtons
+import net.sofi.caculator.ui.compose.BasicCalculator.BasicCalculatorDisplay
 import net.sofi.caculator.viewmodel.BasicCalculatorViewModel
 
 @Composable

@@ -14,16 +14,15 @@ import net.sofi.caculator.ui.screen.BasicCalculatorScreen
 import net.sofi.caculator.ui.theme.CaculatorTheme
 import net.sofi.caculator.viewmodel.BasicCalculatorViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel // Để sử dụng viewModel() trong Compose
+import androidx.navigation.compose.rememberNavController
+import net.sofi.caculator.ui.navigation.NavigationGraph
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CaculatorTheme {
-                // A surface container using the 'background' color from the theme
-                val viewModel: BasicCalculatorViewModel = viewModel()
-                BasicCalculatorScreen(viewModel)
-                }
+            val navController = rememberNavController()
+            NavigationGraph(navController = navController)
             }
         }
     }
