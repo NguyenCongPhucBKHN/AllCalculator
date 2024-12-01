@@ -1,4 +1,4 @@
-package net.sofi.caculator.ui.compose.Splash
+package net.sofi.caculator.ui.compose.Home
 
 import net.sofi.caculator.model.FeatureButtonModel
 

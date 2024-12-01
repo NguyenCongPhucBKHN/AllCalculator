@@ -40,9 +40,38 @@ class BasicCalculatorViewModel : ViewModel() {
                 else ""
                 _uiState.value = BasicCalculatorResultState(display = newDisplay)
             }
+            "√" -> {
+                // Xử lý phép toán căn bậc hai
+                _uiState.value = BasicCalculatorResultState(display = currentDisplay + "√")
+            }
+            "log" -> {
+                // Xử lý phép toán logarit
+                _uiState.value = BasicCalculatorResultState(display = currentDisplay + "log")
+            }
+
+            "x^2" -> {
+                val number = currentDisplay.toDoubleOrNull()
+                if (number != null) {
+                    _uiState.value =
+                        BasicCalculatorResultState(display = (currentDisplay+"^2").toString())
+                } else {
+                    _uiState.value = BasicCalculatorResultState(display = "Error")
+                }
+            }
+            "x!" -> {
+                val number = currentDisplay.toIntOrNull()
+                if (number != null && number >= 0) {
+                    _uiState.value = BasicCalculatorResultState(display = (currentDisplay+"!").toString())
+                } else {
+                    _uiState.value = BasicCalculatorResultState(display = "Error")
+                }
+            }
             else -> {
                 _uiState.value = BasicCalculatorResultState(display = currentDisplay + value)
             }
         }
     }
+}
+private fun factorial(n: Int): Int {
+    return if (n == 0) 1 else n * factorial(n - 1)
 }

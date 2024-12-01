@@ -17,20 +17,21 @@ import androidx.compose.material.Text
 @Composable
 fun BasicCalculatorButtons(onAction: (BasicCalculatorAction) -> Unit) {
     val buttons = listOf(
-        listOf("C", "(", ")", "/"),
-        listOf("7", "8", "9", "x"),
+        listOf("C",  "⌫","(", ")"),
+        listOf("7", "8", "9", "+"),
         listOf("4", "5", "6", "-"),
-        listOf("1", "2", "3", "+"),
-        listOf("0", ".", "⌫", "=")
+        listOf("1", "2", "3", "*"),
+        listOf("0", ".","√", "/", ),
+        listOf("x^2", "x!","log" , "=")
     )
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         for (row in buttons) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(4.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -45,7 +46,7 @@ fun BasicCalculatorButtons(onAction: (BasicCalculatorAction) -> Unit) {
 
                     Button(
                         onClick = { onAction(BasicCalculatorAction.ButtonClick(button)) },
-                        modifier = Modifier
+                        modifier = Modifier.size(70.dp)
                             .weight(1f)
                             .aspectRatio(1f),
                         colors = ButtonDefaults.buttonColors(

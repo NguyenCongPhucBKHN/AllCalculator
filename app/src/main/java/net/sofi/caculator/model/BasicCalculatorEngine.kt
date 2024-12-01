@@ -1,22 +1,37 @@
 package net.sofi.caculator.model
 
-
+import kotlin.math.*
 import java.util.Stack
-
+import net.objecthunter.exp4j.ExpressionBuilder
 object BasicCalculatorEngine {
 
     fun calculate(expression: String): String {
+        if(expression.contains("!")){
+            return try {
+                val number = expression.replace("!", "").toIntOrNull()
+                if (number != null && number >= 0) factorial(number).toString() else "Error"
+            }catch (e: Exception) {
+                "Error"  // Nếu có lỗi trong tính toán, trả về "Error"
+            }
+
+        }
+        val sanitizedExpression = sanitizeExpression(expression)
         return try {
-            val sanitizedExpression = sanitizeExpression(expression)
-            val result = evaluate(sanitizedExpression)
-            result.toString()
+            val result = ExpressionBuilder(sanitizedExpression)
+                .build()
+                .evaluate() // Tính toán kết quả biểu thức
+            result.toString()  // Trả về kết quả dưới dạng chuỗi
         } catch (e: Exception) {
-            "Error"
+            "Error"  // Nếu có lỗi trong tính toán, trả về "Error"
         }
     }
 
     private fun sanitizeExpression(expression: String): String {
+
+
         var sanitized = expression.trim()
+
+
 
         if (sanitized.startsWith("-")) {
             sanitized = "0$sanitized"
@@ -27,8 +42,28 @@ object BasicCalculatorEngine {
         sanitized = sanitized.replace(Regex("([x/+-])\\+"), "$1")
 
         sanitized = sanitized.replace(" ", "")
+        sanitized = expression.replace("√", "sqrt")
+        sanitized = sanitized.replace("log", "log10")
+        //sanitized = sanitized.replace("x^2", "pow")
 
         return sanitized
+    }
+    private fun factorial(n: Int): Int {
+        return if (n == 0) 1 else n * factorial(n - 1)
+    }
+
+    private fun evaluateExpression(expression: String): Double {
+        // Sử dụng hàm eval() hoặc viết logic tính toán thủ công tùy vào yêu cầu.
+        // Cẩn thận với eval(), nếu bạn xử lý theo cách thủ công thì nên viết một bộ phân tích cú pháp.
+        // Giả sử ở đây bạn sẽ sử dụng thư viện hỗ trợ hoặc tự viết hàm để tính toán.
+        return try {
+            // Tính toán biểu thức (bạn có thể thay thế bằng cách phân tích cú pháp biểu thức)
+            // Cần cẩn thận với các phép toán phức tạp như log và căn bậc hai
+            val result = ExpressionBuilder(expression).build().evaluate() // Sử dụng thư viện ExpressionBuilder
+            result
+        } catch (e: Exception) {
+            0.0 // Nếu có lỗi trong tính toán, trả về 0.0
+        }
     }
 
     private fun evaluate(expression: String): Double {

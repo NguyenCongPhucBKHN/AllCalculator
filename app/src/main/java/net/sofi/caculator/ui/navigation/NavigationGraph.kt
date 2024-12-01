@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import net.sofi.caculator.ui.screen.BasicCalculatorScreen
+import net.sofi.caculator.ui.screen.HomeScreen
+import net.sofi.caculator.ui.screen.HomeScreen
 import net.sofi.caculator.ui.screen.SplashScreen
 import net.sofi.caculator.ui.theme.CaculatorTheme
 import net.sofi.caculator.viewmodel.BasicCalculatorViewModel
@@ -17,8 +19,12 @@ fun NavigationGraph(navController: NavHostController = rememberNavController()) 
         navController = navController,
         startDestination = Splash.route
     ) {
-        composable(Splash.route) {
+        composable(Splash.route)
+        {
             SplashScreen(navController = navController)
+        }
+        composable(Home.route) {
+            HomeScreen(navController = navController)
         }
         composable(BasicCalCulator.route) {
             CaculatorTheme {
